@@ -1,0 +1,8 @@
+
+
+.counterBox{
+    display: flex;
+    flex-direction: column;
+    margin: 10% 37% ;
+    align-items: center;
+}

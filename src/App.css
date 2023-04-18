@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.poisonList {
+  margin-top: 3em;
+  border: 20px solid rgba(224, 9, 239, 0.434);
+}
