@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 
 
 
-export const ZodiacSelect = ({taco}) => {
+export const ZodiacSelect = ({handleChange, personState}) => {
 
     const [zodiacSigns, setZodiacSigns] = useState([])
 
@@ -21,8 +21,8 @@ export const ZodiacSelect = ({taco}) => {
 
     return(
 
-            <select name="zodiacId" className="zodiacSelect" onChange={taco}>
-                <option  value="0">Select a sign</option>
+            <select value={personState.zodiacId} name="zodiacId" required className="zodiacSelect" onChange={handleChange}>
+                <option  value="">Select a sign</option>
                 {zodiacSigns.map(sign => <option key={sign.id} value={sign.id}>{sign.name}</option>)}
             </select>
     )

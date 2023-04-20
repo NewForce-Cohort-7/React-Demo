@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom"
 import { ZodiacSelect } from "../zodiac/ZodiacSelect"
 
 
-export const PersonForm = () => {
+export const PersonForm = ({updatePersons}) => {
 
-    const [person, update] = useState({
-
-    })
+    const [person, update] = useState({})
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -24,10 +22,14 @@ export const PersonForm = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(newPerson),
-            });
+            })
+            .then(() => fetch(`http://localhost:8088/persons?_expand=zodiac`))
+            .then(r => r.json())
+            .then(returnedPersons => updatePersons(returnedPersons))
+            .then(()=> update({ name: "", zodiacId: ""}) )
         };
-        
-    
+        // required input
+        //conditional with window alert
 
     const inputOnChange = (event) => {
        
@@ -51,14 +53,15 @@ export const PersonForm = () => {
                         className="form-control"
                         placeholder="type a name here ..."
                         value={person.name}
-                         onChange={inputOnChange} 
+                         onChange={inputOnChange}
+                         
                         />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="zodiacId">Select your sign: </label>
-                    <ZodiacSelect  taco={inputOnChange}/>
+                    <ZodiacSelect  handleChange={inputOnChange} personState={person}/>
                 </div>
             </fieldset>
             <button className="btn btn-primary">

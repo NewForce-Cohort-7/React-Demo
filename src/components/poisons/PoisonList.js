@@ -16,10 +16,15 @@ const [poisons, setPoisons] = useState([])
     },[])
 
     return (
+      <div>
             <section className="poisonList">
             {poisons.map(singlePoison => <Poison key={singlePoison.id} poison={singlePoison} />)}
         </section>
+
+        <section>This is a second section</section>
+      </div>
         )
 
 
 }
+
