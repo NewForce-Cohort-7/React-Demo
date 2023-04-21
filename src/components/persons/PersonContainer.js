@@ -20,7 +20,7 @@ export const PersonContainer = () => {
     return (
         <>
             <PersonForm  updatePersons={setPersons}/>
-            <PersonList tacos={persons} />
+            <PersonList tacos={persons} updatePersons={setPersons} />
         </>
     )
 }
